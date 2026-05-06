@@ -31,7 +31,7 @@ const uploadVideo = async () => {
     videoElement.src = convertFileSrc(path);
     videoElement.controls = true;
     videoElement.disablePictureInPicture = true;
-    videoElement.controlsList?.add("nodownload", "nofullscreen", "noremoteplayback");
+    (videoElement as any).controlsList?.add("nodownload", "nofullscreen", "noremoteplayback");
     preview?.appendChild(videoElement);
     inputPath = path;
   }
@@ -76,11 +76,11 @@ const getQualityLabel = (kbps: number) => {
 } 
 
 const updateEstimate = () => {
-  if(!startTime || !endTime) {
+  if (!startTime || !endTime || !qualitySlider || !qualityLabel || !sizeEstimate) {
     return;
   }
 
-  const videoBitrate = parseInt(qualitySlider?.value);
+  const videoBitrate = parseInt(qualitySlider.value);
   const trimDuration = endTime - startTime;
 
   qualityLabel.textContent = `${getQualityLabel(videoBitrate)} (${videoBitrate} kbps)`;
@@ -105,7 +105,7 @@ window.addEventListener("DOMContentLoaded", () => {
   qualityLabel = document.querySelector(".quality-label")
   sizeEstimate = document.querySelector(".size-estimate")
   
-  uploadInput?.addEventListener("click", (e) => {
+  uploadInput?.addEventListener("click", () => {
     uploadVideo();
   });
 
