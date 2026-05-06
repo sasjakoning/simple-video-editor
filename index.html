@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="video">
+        <button id="file" class="upload">Upload video</button>
+        <div class="preview"></div>
+      </section>
+
+      <section class="quality hidden">
+        <label for="quality" class="quality-label">Medium (2500 kbps)</label>
+        <input
+          type="range"
+          class="quality-slider"
+          id="quality"
+          min="500"
+          max="8000"
+          step="500"
+          value="2500"
+        />
+        <p class="size-estimate">Estimated size: -</p>
+      </section>
+
+      <section class="controls">
+        <button class="btnStart">Set start point</button>
+        <button class="btnEnd">Set end point</button>
+
+        <button class="btnSubmit hidden">Submit</button>
+      </section>
+    </main>
+  </body>
+</html>
